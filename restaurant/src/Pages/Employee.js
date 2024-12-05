@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./inventory.css";
+import "./report.css";
 import  { Button, Table, Input, Modal, Dropdown, Menu, Space } from 'antd';
 import SideMenu from "./SideMenu";
 

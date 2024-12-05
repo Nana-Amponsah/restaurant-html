@@ -5,11 +5,11 @@ import  { Button, Table, Input, Modal, Dropdown, Menu, Space } from 'antd';
 import SideMenu from "./SideMenu";
 
 
-export default function Inventory() {
+export default function Report() {
     const navigate = useNavigate();
     const [filteredInfo, setFilteredInfo] = useState([]);
 
-    const InventoryDisplay = ({ inventory_items }) => {
+    const ReportDisplay = ({ report_items }) => {
         const columns = [
             {
                 title: '#',
@@ -23,24 +23,34 @@ export default function Inventory() {
                 key: 'item_name',
             },
             {
-                title: 'Quantity In Stock',
-                dataIndex: 'quantity_stock',
-                key: 'quantity_stock',
+                title: 'Quantity Purchased',
+                dataIndex: 'quantity_purchased',
+                key: 'quantity_purchased',
+            },
+            {
+                title: 'Total Price',
+                dataIndex: 'total_price',
+                key: 'total_price',
+            },
+            {
+                title: 'Purchase Date',
+                dataIndex: 'purchase_date',
+                key: 'purchase_date',
             },
         ];
     
-        const dataSource = inventory_items.map((item, index) => ({
+        const dataSource = report_items.map((item, index) => ({
             ...item,
             key: index,
         }));
     
         return (
             <Table
-                className='inventory-table'
+                className='report-table'
                 columns={columns}
                 dataSource={dataSource}
                 bordered
-                title={() => <div className="table-header">Inventory</div>}
+                title={() => <div className="table-header">Report</div>}
                 pagination={{ pageSize: 10, position: ['bottomCenter'] }}
             />
         );
@@ -52,7 +62,7 @@ export default function Inventory() {
             <Space className="Content">
                 <SideMenu />
                 <Space direction="horizontal" style={{ width: '100%', marginLeft: '40px', marginTop: '20px' }}>
-                    <InventoryDisplay inventory_items={filteredInfo}/>
+                    <ReportDisplay report_items={filteredInfo}/>
                 </Space>
             </Space>
         </div>

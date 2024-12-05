@@ -52,30 +52,32 @@ export default function SignIn() {
          <div class="box">
 
             <form name='login-form' onSubmit={handleSubmit}> 
+               <br/>
+               <br/>
                <div class="container">
                      <div class="top-header">
-                        <span>Have an account?</span>
                         <header>
                            Login
                         </header>
                      </div>
+                     <br/>
                      <div class="input-field">
                         <input type="text" class='input' placeholder="Username" name='username' required/>
                         <i class="bx bx-user"></i>
                      </div>
+                     <br/>
                      <div class="input-field">
                         <input type="password" class='input' placeholder="Password" name='password' required/>
                         <i class="bx bx-lock-alt"></i>
                      </div>
+                     <br/>
                      <button type='submit' className='submit'>Login</button>
 
                      <div class="bottom">
-                        <div class="left">
+                        <div></div>
+                        <div>
                            <input type="checkbox" id="check"/>
                            <label for="check">Remember Me</label>
-                        </div>
-                        <div class="right">
-                        <label style={{color:'blue', cursor:'pointer'}}>Forgot Password?</label>
                         </div>
                      </div>
                </div>

@@ -3,6 +3,8 @@ import { Menu, Button } from 'antd';
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { GiWallet } from "react-icons/gi";
 import { CiLogout } from "react-icons/ci";
+import { BiSolidReport } from "react-icons/bi";
+import { FiSettings } from "react-icons/fi";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,7 +25,8 @@ export default function SideMenu() {
       <Button
         type="primary"
         onClick={toggleCollapsed}
-        style={{ marginBottom: 13 }}
+        style={{ marginBottom: 13, backgroundColor: '#d49200',
+          borderColor: '#d49200'}}
       >
         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </Button>
@@ -41,13 +44,23 @@ export default function SideMenu() {
         items={[
           {
             label: 'Inventory',
-            icon: <BsFillCartCheckFill />,
+            icon: <BsFillCartCheckFill style={{fontSize: 17}} />,
             key: '/inventory'
+          },
+          {
+            label: 'Report',
+            icon: <BiSolidReport style={{fontSize: 17}} />,
+            key: '/report'
           },
           {
             label: 'Employee Pay Sheet',
             icon: <GiWallet style={{fontSize: 17}} />,
             key: '/employee'
+          },
+          {
+            label: 'Settings',
+            icon: <FiSettings />,
+            key: '/settings'
           },
           {
             label: 'Logout',
