@@ -1,0 +1,103 @@
+.background-overlay {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.9)), url("sigin-background.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    height: 120vh;
+}
+
+.Content{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 10px;
+  }
+
+
+.side-menu-container {
+  display: flex;
+  flex-direction: column;
+  height: 110vh;
+  width: 256px;
+  transition: width 0.2s;
+}
+
+.side-menu-container.collapsed {
+    width: 80px;
+  }
+
+.ant-menu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #dfe2e7;
+}
+
+.ant-menu-item {
+  background-color: #dfe2e7;
+  margin-bottom: 50px !important;
+}
+
+.ant-menu-item:hover {
+  background-color: #ccd0d5;
+}
+
+.app-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+form input,
+form select,
+form button {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+form input:focus,
+form select:focus {
+    border-color: #d49200;
+    box-shadow: 0 0 4px #d49200;
+}
+
+form button:hover {
+  background-color: #b77900;
+}
+
+form input::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+.ant-modal-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.parent-form-container {
+  display: flex;
+  flex-direction: column; /* Items arranged in a column layout */
+  gap: 15px; /* Add spacing between items */
+  align-items: stretch; /* Stretch items to the container width */
+  width: 100%; /* Ensure the container spans the full width */
+  max-width: 400px; /* Optional: Limit the maximum width of the form */
+  margin: 0 auto; /* Center the form on the page */
+}
