@@ -29,7 +29,7 @@ export default function Report() {
     }, []);
 
     const fetchReport = () => {
-        axios.get('http://localhost:5000/report')
+        axios.get('https://tasty-budz-t3xi.onrender.com/report')
             .then(response => {
                 setReport(response.data);
                 setFilteredInfo(response.data);
@@ -40,7 +40,7 @@ export default function Report() {
     };
 
     const fetchInventory = () => {
-        axios.get('http://localhost:5000/inventory')
+        axios.get('https://tasty-budz-t3xi.onrender.com/inventory')
             .then(response => {
                 setInventory(response.data);
             })
@@ -139,7 +139,7 @@ export default function Report() {
             total_price: form.total_price.value
         };
 
-        fetch('http://localhost:5000/add_report', {
+        fetch('https://tasty-budz-t3xi.onrender.com/add_report', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

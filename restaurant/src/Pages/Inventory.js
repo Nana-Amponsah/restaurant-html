@@ -28,7 +28,7 @@ export default function Inventory() {
     }, []);
 
     const fetchInventory = () => {
-        axios.get('http://localhost:5000/inventory')
+        axios.get('https://tasty-budz-t3xi.onrender.com/inventory')
             .then(response => {
                 setInventory(response.data);
                 setFilteredInfo(response.data);
@@ -49,7 +49,7 @@ export default function Inventory() {
             quantity_stock: form.quantity_stock.value
         };
 
-        fetch('http://localhost:5000/update_inventory', {
+        fetch('https://tasty-budz-t3xi.onrender.com/update_inventory', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
