@@ -6,8 +6,7 @@ import os
 
 
 
-app = Flask(__name__, static_folder='restaurant/build', static_url_path='')
-# app = Flask(__name__)
+app = Flask(__name__, static_folder=os.path.abspath('restaurant/build'), static_url_path='/')
 
 client = MongoClient('mongodb+srv://King:FHYKEIKj7vXYGuSs@restaurantmanagement-pr.37jy4.mongodb.net/restaurantDB?retryWrites=true&w=majority&appName=RestaurantManagement-Prod')
 
@@ -15,10 +14,13 @@ db = client['Restaurant']
 
 CORS(app, origins=["https://tasty-budz-t3xi.onrender.com"])
 
-@app.route('/')
-@cross_origin(origins=["https://tasty-budz-t3xi.onrender.com"])
-def serve():
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
     return send_from_directory(app.static_folder, 'index.html')
+
 
 @app.route('/login', methods=['POST'])
 @cross_origin(origins=["https://tasty-budz-t3xi.onrender.com"])
