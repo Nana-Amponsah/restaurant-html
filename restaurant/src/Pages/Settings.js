@@ -10,17 +10,88 @@ import { TbLayoutGridRemove } from "react-icons/tb";
 import { FaBasketShopping } from "react-icons/fa6";
 import "./settings.css"
 
-// Add User <BsPersonFillAdd/>
-//Remove Userr <BsPersonFillDash/>
 
 const ManageEmployees = () => {
     
+    const handleRemove = (event) => {
+        event.preventDefault();
+        
+        const form = event.target;
+
+        const formData = {
+            name: form.name.value
+        };
+
+        fetch('http://localhost:5000/remove_employee', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed To Remove Employee!');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                alert('Successfully Removed Employee!');
+                form.reset();
+            } else {
+                alert(`User removal failed: ${data.message}`);
+                form.reset();
+            }
+        })
+        .catch((error) => {
+            alert(`Failed To Remove Employee: ${error.message}`);
+            form.reset();
+        });
+    };
+
+    const handleAdd = (event) => {
+        event.preventDefault();
+        
+        const form = event.target;
+
+        const formData = {
+            name: form.name.value,
+            contact: form.contact.value
+        };
+
+        fetch('http://localhost:5000/add_employee', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed To Add Employee!');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                alert('Employee Added successfully!');
+                form.reset();
+            } else {
+                alert(`Failed To Add Employee: ${data.message}`);
+                form.reset();
+            }
+        })
+        .catch((error) => {
+            alert(`Failed To Add Employee: ${error.message}`);
+            form.reset();
+        });
+    };
 
 
     return(
 
         <div>
-            <br/>
             <br/>
             <br/>
 
@@ -31,12 +102,15 @@ const ManageEmployees = () => {
                             <BsPersonFillAdd style={{fontSize: 100}}/>
                                 <h3>Add Employee</h3>
 
-                                    <form name="add-employee">
+                                    <form className="app-form" name="add-employee" onSubmit={handleAdd}>
                                         <div>
                                             <label>Employee Name</label>
                                                 <div className="input-field">
-                                                    <input type="text" name="S_name" placeholder=' Sur-name' required/>
-                                                    <input type="text" name="F_name" placeholder=' First-name' required/>
+                                                    <input type="text" name="name" placeholder=' Fullname' required/>
+                                                </div>
+                                            <label>Contact</label>
+                                                <div className="input-field">
+                                                    <input type="text" name="contact" placeholder='+233 000 000 000' required/>
                                                 </div>
                                         </div>
                                         <div className="settings-button">
@@ -47,17 +121,16 @@ const ManageEmployees = () => {
 
                     </Space>
                         
-                    <Space direction="vertical" style={{marginLeft: '60px'}}>
+                    <Space direction="vertical">
                         <div className="items-container">
                             <BsPersonFillDash style={{fontSize: 100}}/>
                                 <h3>Remove Employee</h3>
 
-                                    <form name="remove-employee">
+                                    <form className="app-form" name="remove-employee" onSubmit={handleRemove}>
                                         <div>
                                             <label>Employee Name</label>
                                                 <div className="input-field">
-                                                    <input type="text" name="S_name" placeholder=' Sur-name' required/>
-                                                    <input type="text" name="F_name" placeholder=' First-name' required/>
+                                                    <input type="text" name="name" placeholder=' Fullname' required/>
                                                 </div>
                                         </div>
                                         <div className="settings-button">
@@ -76,9 +149,83 @@ const ManageEmployees = () => {
 
 const ManageItems = () => {
 
+    const handleRemove = (event) => {
+        event.preventDefault();
+        
+        const form = event.target;
+
+        const formData = {
+            item_name: form.item_name.value
+        };
+
+        fetch('http://localhost:5000/remove_item', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed To Remove Item!');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                alert('Successfully Removed Item!');
+                form.reset();
+            } else {
+                alert(`Item removal failed: ${data.message}`);
+                form.reset();
+            }
+        })
+        .catch((error) => {
+            alert(`Failed To Remove Item: ${error.message}`);
+            form.reset();
+        });
+    };
+
+    const handleAdd = (event) => {
+        event.preventDefault();
+        
+        const form = event.target;
+
+        const formData = {
+            item_name: form.item_name.value,
+            quantity_stock: form.quantity_stock.value
+        };
+
+        fetch('http://localhost:5000/add_item', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed To Add Item!');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                alert('Item Added successfully!');
+                form.reset();
+            } else {
+                alert(`Failed To Add Item: ${data.message}`);
+                form.reset();
+            }
+        })
+        .catch((error) => {
+            alert(`Failed To Add Item: ${error.message}`);
+            form.reset();
+        });
+    };
+
     return(
         <div>
-            <br/>
             <br/>
             <br/>
 
@@ -89,11 +236,15 @@ const ManageItems = () => {
                             <TbLayoutGridAdd style={{fontSize: 100}}/>
                                 <h3>Add Item</h3>
 
-                                <form className="items-form"> 
-                                    <div className="form-group">
+                                <form className="app-form" onSubmit={handleAdd}> 
+                                    <div className="form-group" style={{flexDirection:'column'}}>
                                         <div className="input-field">
                                             <label>Item Name</label>
                                             <input type="text" name="item_name" placeholder='  Product' required/>
+                                        </div>
+                                        <div className="input-field">
+                                            <label>Quantity</label>
+                                            <input type="text" name="quantity_stock" placeholder='  Quantity' required/>
                                         </div>
                                     </div>
                                     <div className="settings-button">
@@ -104,12 +255,12 @@ const ManageItems = () => {
 
                     </Space>
                         
-                    <Space direction="vertical" style={{marginLeft: '100px'}}>
+                    <Space direction="vertical">
                         <div className="items-container">
                             <TbLayoutGridRemove style={{fontSize: 100}}/>
                                 <h3>Remove Item</h3>
 
-                                <form className="items-form"> 
+                                <form className="app-form" onSubmit={handleRemove}> 
                                     <div className="form-group">
                                         <div className="input-field">
                                             <label>Item Name</label>
