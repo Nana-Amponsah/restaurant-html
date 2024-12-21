@@ -22,7 +22,7 @@ const ManageEmployees = () => {
             name: form.name.value
         };
 
-        fetch('http://localhost:5000/remove_employee', {
+        fetch('https://tasty-budz-t3xi.onrender.com/remove_employee', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ const ManageEmployees = () => {
             contact: form.contact.value
         };
 
-        fetch('http://localhost:5000/add_employee', {
+        fetch('https://tasty-budz-t3xi.onrender.com/add_employee', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -158,7 +158,7 @@ const ManageItems = () => {
             item_name: form.item_name.value
         };
 
-        fetch('http://localhost:5000/remove_item', {
+        fetch('https://tasty-budz-t3xi.onrender.com/remove_item', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -196,7 +196,7 @@ const ManageItems = () => {
             quantity_stock: form.quantity_stock.value
         };
 
-        fetch('http://localhost:5000/add_item', {
+        fetch('https://tasty-budz-t3xi.onrender.com/add_item', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

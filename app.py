@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from pymongo import MongoClient
 from flask_cors import CORS, cross_origin
 from flask.helpers import send_from_directory
+import os
 
 
 
@@ -12,15 +13,15 @@ client = MongoClient('mongodb+srv://King:FHYKEIKj7vXYGuSs@restaurantmanagement-p
 
 db = client['Restaurant']
 
-CORS(app)
+CORS(app, origins=["https://tasty-budz-t3xi.onrender.com"])
 
 @app.route('/')
-@cross_origin()
+@cross_origin(origins=["https://tasty-budz-t3xi.onrender.com"])
 def serve():
     return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/login', methods=['POST'])
-@cross_origin()
+@cross_origin(origins=["https://tasty-budz-t3xi.onrender.com"])
 def login():
     if request.method == 'POST':
         data = request.json
@@ -35,7 +36,7 @@ def login():
             return jsonify({'success': False, 'message':'Login failed, Check your credentials'})
         
 @app.route('/inventory', methods=['GET'])
-@cross_origin()
+@cross_origin(origins=["https://tasty-budz-t3xi.onrender.com"])
 def get_inventory():
     inventory = list(db['Inventory'].find())
     for item in inventory:
@@ -44,7 +45,7 @@ def get_inventory():
 
 
 @app.route('/employee', methods=['GET'])
-@cross_origin()
+@cross_origin(origins=["https://tasty-budz-t3xi.onrender.com"])
 def get_paysheet():
     paysheet = list(db['Paysheet'].find())
     for item in paysheet:
@@ -52,8 +53,7 @@ def get_paysheet():
     return jsonify(paysheet)
 
 @app.route('/report', methods=['GET'])
-@cross_origin()
-@cross_origin()
+@cross_origin(origins=["https://tasty-budz-t3xi.onrender.com"])
 def get_report():
     report = list(db['Reports'].find())
     for item in report:
@@ -61,7 +61,7 @@ def get_report():
     return jsonify(report)
 
 @app.route('/update_inventory', methods=['POST'])
-@cross_origin()
+@cross_origin(origins=["https://tasty-budz-t3xi.onrender.com"])
 def update_inventory():
     if request.method == 'POST':
         data = request.json
@@ -78,7 +78,7 @@ def update_inventory():
         return jsonify({'success': False, 'message': 'Item doesnot exist'})
 
 @app.route('/add_report', methods=['POST'])
-@cross_origin()
+@cross_origin(origins=["https://tasty-budz-t3xi.onrender.com"])
 def add_report():
     if request.method == 'POST':
         data = request.json
@@ -91,7 +91,7 @@ def add_report():
     return jsonify({'success': True, 'message': 'Report added successfully'})
 
 @app.route('/employees', methods=['GET'])
-@cross_origin()
+@cross_origin(origins=["https://tasty-budz-t3xi.onrender.com"])
 def get_employees():
     employees = list(db['Employees'].find())
     for employee in employees:
@@ -99,7 +99,7 @@ def get_employees():
     return jsonify(employees)
 
 @app.route('/add_paysheet', methods=['POST'])
-@cross_origin()
+@cross_origin(origins=["https://tasty-budz-t3xi.onrender.com"])
 def add_paysheet():
     if request.method == 'POST':
         data = request.json
@@ -113,7 +113,7 @@ def add_paysheet():
     return jsonify({'success': True, 'message': 'Payment entry added successfully'})
 
 @app.route('/add_employee', methods=['POST'])
-@cross_origin()
+@cross_origin(origins=["https://tasty-budz-t3xi.onrender.com"])
 def add_employee():
     if request.method == 'POST':
         data = request.json
@@ -129,7 +129,7 @@ def add_employee():
             return jsonify({'success': True, 'message': 'Employee added successfully'})
         
 @app.route('/remove_employee', methods=['POST'])
-@cross_origin()
+@cross_origin(origins=["https://tasty-budz-t3xi.onrender.com"])
 def remove_employee():
     if request.method == 'POST':
         data = request.json
@@ -144,7 +144,7 @@ def remove_employee():
             return jsonify({'success': False, 'message': 'Employee does not exist'})
         
 @app.route('/add_item', methods=['POST'])
-@cross_origin()
+@cross_origin(origins=["https://tasty-budz-t3xi.onrender.com"])
 def add_item():
     if request.method == 'POST':
         data = request.json
@@ -160,7 +160,7 @@ def add_item():
             return jsonify({'success': True, 'message': 'Item added successfully'})
         
 @app.route('/remove_item', methods=['POST'])
-@cross_origin()
+@cross_origin(origins=["https://tasty-budz-t3xi.onrender.com"])
 def remove_item():
     if request.method == 'POST':
         data = request.json
@@ -176,4 +176,4 @@ def remove_item():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
