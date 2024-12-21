@@ -6,11 +6,15 @@
 
 - Run the following command in a **Terminal** to start the server for the Website
 
+``` shell
+pip install -r requirements.txt
+```
+
 ```shell
 python app.py
 ```
 
-- Run the following commands in a **Terminal** to run the Website
+- Run the following commands in a **Terminal** to setup the Website
 
 ``` shell
 cd restaurant
