@@ -6,7 +6,7 @@ import os
 
 
 
-app = Flask(__name__, static_folder=os.path.abspath('restaurant/build'), static_url_path='/')
+app = Flask(__name__, static_folder=os.path.abspath('restaurant/build'))
 
 client = MongoClient('mongodb+srv://King:FHYKEIKj7vXYGuSs@restaurantmanagement-pr.37jy4.mongodb.net/restaurantDB?retryWrites=true&w=majority&appName=RestaurantManagement-Prod')
 
