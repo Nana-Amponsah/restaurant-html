@@ -156,7 +156,7 @@ const ManageItems = () => {
     const [category, setCategory] = useState([]);
 
     useEffect(() => {
-        fetch('http://tasty-budz-t3xi.onrender.com/category')
+        fetch('https://tasty-budz-t3xi.onrender.com/category')
         // fetch('http://localhost:5000/category')
             .then(response => {
                 if (!response.ok) {
@@ -327,7 +327,7 @@ const ManageCategory = () => {
     const [category, setCategory] = useState([]);
 
     useEffect(() => {
-        fetch('http://tasty-budz-t3xi.onrender.com/category')
+        fetch('https://tasty-budz-t3xi.onrender.com/category')
         // fetch('http://localhost:5000/category')
             .then(response => {
                 if (!response.ok) {
