@@ -94,10 +94,10 @@ form input::placeholder {
 
 .parent-form-container {
   display: flex;
-  flex-direction: column; /* Items arranged in a column layout */
-  gap: 15px; /* Add spacing between items */
-  align-items: stretch; /* Stretch items to the container width */
-  width: 100%; /* Ensure the container spans the full width */
-  max-width: 400px; /* Optional: Limit the maximum width of the form */
-  margin: 0 auto; /* Center the form on the page */
+  flex-direction: column;
+  gap: 15px;
+  align-items: stretch; 
+  width: 100%;
+  max-width: 400px; 
+  margin: 0 auto; 
 }

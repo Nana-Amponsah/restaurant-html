@@ -30,6 +30,7 @@ export default function Report() {
 
     const fetchReport = () => {
         axios.get('https://tasty-budz-t3xi.onrender.com/report')
+        // axios.get('http://localhost:5000/report')
             .then(response => {
                 setReport(response.data);
                 setFilteredInfo(response.data);
@@ -41,6 +42,7 @@ export default function Report() {
 
     const fetchInventory = () => {
         axios.get('https://tasty-budz-t3xi.onrender.com/inventory')
+        // axios.get('http://localhost:5000/inventory')
             .then(response => {
                 setInventory(response.data);
             })
@@ -136,10 +138,12 @@ export default function Report() {
             item_name: form.item_name.value,
             quantity_purchased: form.quantity_purchased.value,
             purchase_date: form.purchase_date.value,
-            total_price: form.total_price.value
+            total_price: form.total_price.value,
+            unit_price: form.unit_price.value
         };
 
         fetch('https://tasty-budz-t3xi.onrender.com/add_report', {
+            // fetch('http://localhost:5000/add_report', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -239,6 +243,10 @@ const ReportDisplay = ({ report_items }) => {
             key: 'quantity_purchased',
         },
         {
+            title: 'Unit Price',
+            dataIndex: 'unit_price',
+            key: 'unit_price',},
+        {
             title: 'Total Price',
             dataIndex: 'total_price',
             key: 'total_price',
@@ -281,6 +289,8 @@ const AddReport = ({visible, onCancel, onSubmit, title, inventory}) => (
                 </select>
 
                 <input type="text" name="quantity_purchased" placeholder=" Quantity" required/>
+
+                <input type="text" name="unit_price" placeholder=" Unit Price" required/>
 
                 <input type="text" name="total_price" placeholder=" Total" required/>
 
