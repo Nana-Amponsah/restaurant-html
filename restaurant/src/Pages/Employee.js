@@ -31,6 +31,7 @@ export default function Employee() {
 
     const fetchPaysheet = () => {
         axios.get('https://tasty-budz-t3xi.onrender.com/employee')
+        // axios.get('http://localhost:5000/employee')
             .then(response => {
                 setEmployeePay(response.data);
                 setFilteredInfo(response.data);
@@ -42,6 +43,7 @@ export default function Employee() {
 
     const fetchEmployees = () => {
         axios.get('https://tasty-budz-t3xi.onrender.com/employees')
+        // axios.get('http://localhost:5000/employees')
             .then(response => {
                 setEmployees(response.data);
             })
@@ -141,6 +143,7 @@ export default function Employee() {
             };
     
             fetch('https://tasty-budz-t3xi.onrender.com/add_paysheet', {
+                // fetch('http://localhost:5000/add_paysheet', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
