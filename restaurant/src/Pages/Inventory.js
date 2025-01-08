@@ -175,22 +175,33 @@ export default function Inventory() {
                     />
                 </Space>
             </Space>
-            <UpdateItem visible={isUpdateVisible} onCancel={handleCancel} onSubmit={handleUpdate} title='Update Inventory Item' inventory={inventory} />
+            <UpdateItem 
+            visible={isUpdateVisible} 
+            onCancel={handleCancel} 
+            onSubmit={handleUpdate} 
+            title='Update Inventory Item' 
+            inventory={inventory} 
+            selectedCategory={selectedCategory}
+            />
         </div>
     );
 };
 
-const UpdateItem = ({visible, onCancel, onSubmit, title, inventory}) => (
+const UpdateItem = ({visible, onCancel, onSubmit, title, inventory, selectedCategory}) => (
     <Modal title={title} visible={visible} onCancel={onCancel} footer={null}>
         <form className="app-form" name='addItem' onSubmit={onSubmit}>
             <div className="parent-form-container">
+
                 <select name='item_name' id='items' required>
-                        <option value='' disabled selected>Select Item</option>
-                        {inventory.map((item, index) => (
+                    <option value='' disabled selected>Select Item</option>
+                    {inventory
+                        .filter(item => !selectedCategory || item.category === selectedCategory)
+                        .map((item, index) => (
                             <option key={index} value={item.item_name}>
                                 {item.item_name}
                             </option>
-                        ))}
+                        ))
+                    }
                 </select>
                 
                 <input type='text' name='quantity_stock' placeholder='Quantity' required/>
@@ -200,7 +211,6 @@ const UpdateItem = ({visible, onCancel, onSubmit, title, inventory}) => (
                 </div>
 
             </div>
-            
         </form>
     </Modal>
-)
+);
