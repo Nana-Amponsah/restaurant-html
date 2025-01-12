@@ -5,6 +5,7 @@ import Report from './Pages/Report';
 import Inventory from './Pages/Inventory';
 import Employee from './Pages/Employee';
 import Settings from './Pages/Settings';
+import Production from './Pages/Production';
 
 
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/report" element={<Report/>} />
           <Route path="/employee" element={<Employee/>} />
           <Route path="/settings" element={<Settings/>} />
+          <Route path="/production" element={<Production/>} />
 
 
         </Routes>
