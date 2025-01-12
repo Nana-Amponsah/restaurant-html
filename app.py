@@ -233,6 +233,33 @@ def get_category():
         category['_id'] = str(category['_id'])
     return jsonify(categories)
 
+@app.route('/get_production', methods=['GET'])
+@cross_origin(origins=["https://tasty-budz-t3xi.onrender.com"])
+# @cross_origin()
+def get_production():
+    try:
+        production = list(db['Production'].find().sort('createdAt', -1))
+        for item in production:
+            item['_id'] = str(item['_id'])
+        return jsonify(production)
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)})
+
+
+
+@app.route('/save_production', methods=['POST'])
+@cross_origin(origins=["https://tasty-budz-t3xi.onrender.com"])
+# @cross_origin()
+def save_production():
+    try:
+        data = request.json.get('data', [])
+        db['Production'].delete_many({})  
+        db['Production'].insert_many(data)
+        return jsonify({'success': True, 'message': 'Production data saved successfully!'})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)})
+
+
 if __name__ == '__main__':
     app.debug = True
     # app.run(host='0.0.0.0')

@@ -6,6 +6,7 @@ import { CiLogout } from "react-icons/ci";
 import { BiSolidReport } from "react-icons/bi";
 import { FiSettings } from "react-icons/fi";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import { BiSolidDish } from "react-icons/bi";
 import { useNavigate } from 'react-router-dom';
 
 export default function SideMenu() {
@@ -56,6 +57,11 @@ export default function SideMenu() {
             label: 'Employee Pay Sheet',
             icon: <GiWallet style={{fontSize: 17}} />,
             key: '/employee'
+          },
+          {
+            label: 'Production',
+            icon: <BiSolidDish style={{fontSize: 17 }}/>,
+            key: '/production'
           },
           {
             label: 'Settings',
